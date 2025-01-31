@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const ContactPage = require("../models/Contact");
+const ContactPage = require("../models/Contact");
 const nodemailer = require("nodemailer");
 
 //CREATE Blog
@@ -12,6 +12,10 @@ router.post("/",async (req, res) => {
     }
 
     try {
+        const newContact = new ContactPage({ name, email, message, phone, countryCode, countryName });
+        await newContact.save();
+        console.log("Contact form data saved successfully.");
+
         // Nodemailer configuration
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -24,14 +28,18 @@ router.post("/",async (req, res) => {
         await transporter.sendMail({
             from: "chirukosanam123@gmail.com",
             to: "chirukosanam123@gmail.com",
-            subject: name,
-            text: "Hello...",
-            html: `<h1>Welcome ${name}</h1><p>${email} is Contacting you.${message}</p>`,
+            subject: `New Contact Form Submission from ${name}`,
+            html: `<h1>New Contact Message</h1>
+             <p><strong>Name:</strong> ${name}</p>
+             <p><strong>Email:</strong> ${email}</p>
+             <p><strong>Phone:</strong> ${countryCode} ${phone}</p>
+             <p><strong>Country:</strong> ${countryName}</p>
+             <p><strong>Message:</strong> ${message}</p>`,
           });
       
           console.log("email sent sucessfully");
 
-        res.status(200).json({ success: true });
+        res.status(200).json({ success: true, message: "Contact form submitted successfully." });
     } catch (error) {
         console.error("Error sending email:", error);
         res.status(500).json({ success: false, error: "Failed to send the message." });
