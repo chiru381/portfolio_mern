@@ -4,13 +4,13 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const coverpageRoute = require("./routes/coverpages");
+const experienceRoute = require("./routes/experience");
 const mottoRoute = require("./routes/motto");
 const projectRoute = require("./routes/projects");
 const certificateRoute = require("./routes/certificates");
 const skillsRoute = require("./routes/skills");
 const hobbyRoute = require("./routes/hobbies");
-const blogRoute = require("./routes/blogs");
+const educationRoute = require("./routes/education");
 const contactRoute = require("./routes/contact");
 
 dotenv.config();
@@ -23,13 +23,13 @@ then(() => console.log('Database Connected')).catch(err => console.log(err));
 
 app.use(cors());
 
-app.use("/api/coverpages",coverpageRoute);    //no need
-app.use("/api/motto",mottoRoute);
+app.use("/api/experience",experienceRoute); 
+app.use("/api/motto",mottoRoute);             //no need
 app.use("/api/projects",projectRoute);
 app.use("/api/certificates",certificateRoute);
 app.use("/api/skills", skillsRoute);
 app.use("/api/hobbies", hobbyRoute);        //no need
-app.use("/api/blogs", blogRoute);
+app.use("/api/education", educationRoute);  
 app.use("/api/contact", contactRoute);
 
 app.listen("5000",() => {

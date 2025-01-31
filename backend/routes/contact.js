@@ -5,9 +5,9 @@ const nodemailer = require("nodemailer");
 //CREATE Blog
 router.post("/",async (req, res) => {
     // const newBlogpage = new Blogpage(req.body);
-    const { name, email, message } = req.body;
+    const { name, email, message, phone, countryCode, countryName } = req.body;
 
-    if (!name || !email || !message) {
+    if (!name || !email || !message || !phone || !countryCode || !countryName) {
         return res.status(400).json({ success: false, error: "All fields are required." });
     }
 
@@ -26,7 +26,7 @@ router.post("/",async (req, res) => {
             to: "chirukosanam123@gmail.com",
             subject: name,
             text: "Hello...",
-            html: `<h1>Welcome ${name}</h1><p>Some one is Contacting you.${message}</p>`,
+            html: `<h1>Welcome ${name}</h1><p>${email} is Contacting you.${message}</p>`,
           });
       
           console.log("email sent sucessfully");
