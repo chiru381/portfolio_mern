@@ -5,11 +5,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const experienceRoute = require("./routes/experience");
-const mottoRoute = require("./routes/motto");
 const projectRoute = require("./routes/projects");
 const certificateRoute = require("./routes/certificates");
 const skillsRoute = require("./routes/skills");
-const hobbyRoute = require("./routes/hobbies");
 const educationRoute = require("./routes/education");
 const contactRoute = require("./routes/contact");
 
