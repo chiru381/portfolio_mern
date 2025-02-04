@@ -23,12 +23,10 @@ then(() => console.log('Database Connected')).catch(err => console.log(err));
 
 app.use(cors());
 
-app.use("/api/experience",experienceRoute); 
-app.use("/api/motto",mottoRoute);             //no need
+app.use("/api/experience",experienceRoute);
 app.use("/api/projects",projectRoute);
 app.use("/api/certificates",certificateRoute);
 app.use("/api/skills", skillsRoute);
-app.use("/api/hobbies", hobbyRoute);        //no need
 app.use("/api/education", educationRoute);  
 app.use("/api/contact", contactRoute);
 
