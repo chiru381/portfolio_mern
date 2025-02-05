@@ -1,0 +1,11 @@
+{
+  "accent": {
+    "primary": "#21ee00",
+    "black": "#000000"
+  },
+  "appearance": "dark",
+  "background": {
+    "light": "white",
+    "dark": "#202124"
+  }
+}
