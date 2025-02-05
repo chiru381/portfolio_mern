@@ -1,0 +1,42 @@
+.educationSetWrapper{
+    margin-bottom:12px;
+    text-align: center;
+}
+
+.educationSetTitle{
+    margin-top: 4px;
+}
+
+.educationSetCollection{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px; 
+  max-width: 1200px;
+  margin: 0 auto; 
+}
+
+@media only screen and (max-width: 1200px) {
+    .educationSetCollection{
+      column-gap:24px;
+    }
+}
+
+/* Medium Screens (Tablets) */
+@media only screen and (max-width: 1024px) {
+  .educationSetCollection {
+      flex-direction: row;
+      justify-content: center;
+      gap: 24px;
+  }
+}
+
+/* Small Screens (Mobile) */
+@media only screen and (max-width: 768px) {
+  .educationSetCollection {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+  }
+}
