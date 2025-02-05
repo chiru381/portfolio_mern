@@ -1,37 +1,70 @@
-import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AccordionPage from "./components/AccordionPage";
-import SwitchPage from "./components/SwitchPage";
-import CustomizedSnackbars from "./components/CustomizedSnackbars";
-import DashboardLayoutBasic from "./components/DashboardLayoutBasic";
+import { Route, Routes } from "react-router-dom";
+import colorTokens from "./tokens/color/color-tokens.json";
 
-const NavbarPage = lazy(() => import("./components/NavbarPage"));
-const ModalPage = lazy(() => import("./components/ModalPage"));
-const Loading = lazy(() => import("./components/Loading"));
-const MediaCard = lazy(() => import("./components/MediaCard"));
-const Skills = lazy(() => import("./components/Skills"));
-const Education = lazy(() => import("./components/Education"));
-const Experience = lazy(() => import("./components/Experience"));
+import Homepage from "./pages/homepage/Homepage";
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
+
+import classes from "./App.module.css";
+// import CookieOverlay from "./components/overlays/Cookies/CookieOverlay";
+import ProjectsPage from "./pages/projectspage/ProjectsPage";
+import CertificatesPage from "./pages/certificatespage/CertificatesPage";
+import SkillsPage from "./pages/skillspage/SkillsPage";
+import { ThemeProvider, useTheme } from "stelios";
+import VariantProvider from "./components/VariantProvider/VariantProvider";
+import ExperiencePage from "./pages/experiencepage/ExperiencePage";
+import EducationPage from "./pages/educationpage/EducationPage";
+import ProjectDetails from "./components/projectset/ProjectDetails";
+
+const AppContent = () => {
+  const theme = useTheme()?.theme;
+  const colorPalette = theme?.colorPalette || {};
+  const appearance = colorPalette.primary?.appearance || "light";
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: appearance === "light" ? "white" : "#202124",
+      }}
+    >
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route
+          path="/project/:id"
+          element={<ProjectDetails type="projects" />}
+        />
+        <Route path="/projects/" element={<ProjectsPage />} />
+        <Route path="/certificates/" element={<CertificatesPage />} />
+        <Route path="/skills/" element={<SkillsPage />} />
+        <Route path="/experience/" element={<ExperiencePage />} />
+        <Route path="/education/" element={<EducationPage />} />
+      </Routes>
+    </div>
+  );
+};
 
 function App() {
   return (
-    <Router>
-      <Suspense fallback={<div><Loading /></div>}>
-      
-        <Routes>
-          <Route path="/" element={<NavbarPage />} />
-          <Route path="/projects" element={<MediaCard />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/experience" element={<Experience />} />
-        </Routes>
-        <ModalPage />
-      <AccordionPage />
-      <SwitchPage />
-      <CustomizedSnackbars />
-      <DashboardLayoutBasic />
-      </Suspense>
-    </Router>
+    <div className={classes.app}>
+      <VariantProvider>
+        <ThemeProvider
+          accents={{
+            primary: colorTokens.accent.primary,
+            black: colorTokens.accent.black,
+          }}
+          appearance={colorTokens.appearance}
+        >
+          <Header />
+          <AppContent />
+          <Footer />
+          {/* <CookieOverlay /> */}
+        </ThemeProvider>
+      </VariantProvider>
+    </div>
   );
 }
 
