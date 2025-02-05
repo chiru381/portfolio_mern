@@ -1,0 +1,24 @@
+.certificateSetWrapper{
+    margin-bottom:12px;
+}
+
+.certificateSetTitle{
+    margin-bottom: 12px;
+}
+
+.certificateSetCollection{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+@media only screen and (max-width: 800px) {
+    .certificateSetCollection{
+        row-gap:12px;
+    }
+    .certificateSetTitle{
+        margin-bottom: 4px;
+    }
+}

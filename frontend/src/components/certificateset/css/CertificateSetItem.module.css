@@ -1,0 +1,92 @@
+.certificateSetItemWrapper{
+    max-width: 100%;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    border-radius: 10px;
+    flex-basis: 31%;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+  
+.image{
+    width:100%;
+    border-radius: 10px 10px 0 0;
+}
+  
+.image img{
+    width:100%;
+    object-fit: cover;
+    border-radius: 0px 10px 10px 0px;
+    height: 100%;
+}
+  
+  
+.content{
+    padding:10px 10px 10px 20px;
+    min-width: 60%;
+}
+  
+.title{
+    margin-bottom: 6px;
+}
+  
+.date{
+    margin-bottom: 6px;
+}
+  
+.category{
+    width:100%;
+    margin-bottom: 0px;
+}
+  
+.description{
+    margin-bottom: 6px;
+}
+
+
+/* iPad Devices */
+@media only screen and (max-width: 1200px) {
+    .certificateSetItemWrapper{
+        flex-basis: 48%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .duration{
+        display: none;
+    }
+    .durationGold{
+        display: none;
+    }
+    .category{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .certificateSetItemWrapper{
+        flex-basis: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .certificateSetItemWrapper{
+        flex-basis: 100%;
+    }
+    .duration{
+        display: block;
+    }
+    .durationGold{
+        display: block;
+    }
+    .category{
+        display: block;
+    }
+    .title h5{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1100px) {
+    /* Your responsive styles here */
+}
