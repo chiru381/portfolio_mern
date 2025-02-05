@@ -1,0 +1,84 @@
+.footer {
+  width: 100%;
+  padding-bottom: 28px;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.footerContent {
+  width: var(--verylargeWidth);
+  max-width: 80%;
+}
+
+/* Contact Info Styling */
+.contactInfo {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+/* Footer Menu */
+.footerMenuComplete {
+  margin-top: 20px;
+}
+
+.footerMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerMenuContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.socialIcon {
+  color: white;
+  font-size: 24px;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1000px) {
+  .footerContent {
+    width: var(--smallWidth);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .footerContent {
+    max-width: 85%;
+  }
+
+  .footerMenuContent {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .footerContent {
+    max-width: 90%;
+  }
+
+  .socialLinks {
+    flex-direction: column;
+  }
+}
