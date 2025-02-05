@@ -51,16 +51,23 @@ router.post("/:_id/like", async (req, res) => {
   }
 });
 
-// GET Project BY IDTITLE
-router.get("/:idTitle", async (req,res) => {
-  try{
-    const projectpage = await Projectpage.find({"idTitle": req.params.idTitle});
+// GET Project BY ID
+router.get("/:id", async (req, res) => {
+  try {
+    // Fetch project based on ObjectId
+    const projectpage = await Projectpage.findById(req.params.id);
+    
+    if (!projectpage) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
     res.status(200).json(projectpage);
-  }
-  catch(err){
-    res.status(500).json(err);
+  } catch (err) {
+    console.error("Error fetching project:", err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 //GET ALL Projects
 router.get("/", async (req,res) => {
