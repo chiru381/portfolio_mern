@@ -4,7 +4,6 @@ import { Card, List, ListItem, Tag, Text, useTheme } from 'stelios';
 import classes from './css/ExperienceSetItem.module.css';
 
 const ExperienceSetItem = (props) => {
-    console.log(props)
     const _color = useTheme().theme.colorPalette.primary.appearance === "light" ? "black" : "white";
     return (
         <>
