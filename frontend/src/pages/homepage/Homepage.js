@@ -57,9 +57,9 @@ const Homepage = () => {
     const colorPalette = useTheme().theme.colorPalette;
 
     // Calculate window width - Do not use hooks!
-    let certificateset = <CertificateSet title="Latest Certificates" time="latest" type="story" limit="6"/>
+    let certificateset = <CertificateSet title="Certifications" time="latest" type="story" limit="6"/>
     if(window.innerWidth < 400){
-        certificateset = <CertificateSet title="Latest Certificates" time="latest" type="story" limit="4"/>
+        certificateset = <CertificateSet title="Certifications" time="latest" type="story" limit="4"/>
     }
 
     return (
@@ -67,11 +67,11 @@ const Homepage = () => {
             <Suspense fallback={<div style={{height: "600px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}><Loader/></div>}>
                 <Intropage/>
                 <LineDiamondLine/>
-                <ProjectSet title="Latest Projects" time="latest" limit="3"/>
+                <ProjectSet title="Projects" time="latest" limit="3"/>
                 <LineDiamondLine/>
                 {certificateset}
                 <LineDiamondLine/>
-                <SkillSet title="High Rated Skills" time="latest" limit="6" />
+                <SkillSet title="Skills" time="latest" limit="6" />
                 <LineDiamondLine/>
                 <ExperienceSet title="Experience" time="latest" limit="2" />
                 <LineDiamondLine/>
