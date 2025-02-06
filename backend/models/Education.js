@@ -2,49 +2,27 @@ const mongoose = require("mongoose");
 
 const EducationSchema = new mongoose.Schema(
   {
-    title: {
+    education: {
       type:String,
       required:true,
       unique:true
     },
-    idTitle: {
+    institute: {
       type:String,
       required:true,
       unique:true
     },
-    description: {
+    location: {
       type: String
     },
-    content: {
+    university: {
       type:String
     },
     coverImage:{
       type:String
     },
-    imageCaption:{
-      type:String
-    },
-    imageAlt:{
-      type:String
-    },
-    videoUrl:{
-      type:String
-    },
-    authors:{
-      type:Array
-    },
     category:{
       type:Array
-    },
-    buildDate:{
-      type:Date
-    },
-    // 1 - easy, 2 - medium, 3 - hard
-    difficultyType:{
-      type:Number
-    },
-    likes_count:{
-      type:Number
     }
   },
   { timestamps: true }

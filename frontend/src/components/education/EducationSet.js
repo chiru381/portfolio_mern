@@ -39,8 +39,7 @@ const EducationSet = (props) => {
         fetchEducation();
       }, [props.time, props.type, params.category, props.limit]);
       
-      let currentPageData = education.map((education,index) => <EducationSetItem key={education._id} id={education._id} idTitle={education.idTitle} title={education.title} description={education.description} date={education.createdAt}
-        category={education.authors} content = {education.content} coverImage={education.coverImage} imageAlt={education.imageAlt} duration={education.duration} difficultyType={education.difficultyType}/>);
+      let currentPageData = education.map((education,index) => <EducationSetItem key={education._id} id={education._id} education={education.education} institute={education.institute} location={education.location} university={education.university} />);
     
       if(isLoading){
         return (<div>

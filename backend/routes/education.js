@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Education = require("../models/Education");
 
-//CREATE Education
 router.post("/",async (req, res) => {
   const newEducation = new Education(req.body);
   try{
@@ -13,60 +12,23 @@ router.post("/",async (req, res) => {
   }
 });
 
-// UPDATE Education
-router.put("/:title", async (req, res) => {
-  try{
-    const education = await Education.findById(req.params.title);
-    try{
-      const updatedEducation = await education.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-      },
-      { new: true });
-      res.status(200).json(updatedEducation);
+router.get("/:id", async (req, res) => {
+  try {
+    const education = await Education.findById(req.params.id); 
+    if (!education) {
+      return res.status(404).json({ message: "Education not found" });
     }
-    catch(err){
-      res.status(500).json(err);
-    }
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
-});
-
-// Like a Education
-router.post("/:_id/like", async (req, res) => {
-  try{
-    try{
-      const type = req.body.type;
-      const counter = type === 'like' ? 1:-1;
-      const updatedEducation = await Education.updateOne({_id:req.params._id},{$inc:{likes_count: counter}},{new:true});
-      res.status(200).json(updatedEducation);
-    }
-    catch(err){
-      res.status(500).json(err);
-    }
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
-});
-
-// GET Education BY IDTITLE
-router.get("/:idTitle", async (req,res) => {
-  try{
-    const education = await Education.find({"idTitle": req.params.idTitle});
     res.status(200).json(education);
-  }
-  catch(err){
-    res.status(500).json(err);
+  } catch (err) {
+    console.error("Error fetching education:", err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-//GET ALL Education
 router.get("/", async (req,res) => {
   try{
     const category = req.query.category;
-    const idTitle = req.query.idTitle;
+    const education = req.query.education;
     const limit = req.query.limit;
     let educations;
 
@@ -75,8 +37,8 @@ router.get("/", async (req,res) => {
     if(category){
       query.category = req.query.category;
     }
-    if(idTitle){
-      query.idTitle = req.query.idTitle;
+    if(education){
+      query.education = req.query.education;
     }
 
     if(limit){
@@ -92,6 +54,5 @@ router.get("/", async (req,res) => {
     res.status(500).json(err); 
   }
 });
-
 
 module.exports = router;
