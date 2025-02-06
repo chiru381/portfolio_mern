@@ -41,8 +41,8 @@ const ExperienceSet = (props) => {
       
       let currentPageData = experience.map((experience,index) => 
         <div key={experience._id}>
-        <ExperienceSetItem key={experience._id} id={experience._id} idTitle={experience.idTitle} title={experience.title} description={experience.description} date={experience.createdAt}
-        category={experience.authors} isDetailed = {experience.isDetailed} coverImage={experience.coverImage} imageAlt={experience.imageAlt} duration={experience.duration} difficultyType={experience.difficultyType}/>
+        <ExperienceSetItem key={experience._id} id={experience._id} jobTitle={experience.jobTitle} description={experience.description} company={experience.company} location={experience.location}
+        employmentType={experience.employmentType} startDate = {experience.startDate} endDate={experience.endDate} isCurrent={experience.isCurrent} technologies={experience.technologies} />
       </div>
       );
     

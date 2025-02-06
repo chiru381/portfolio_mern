@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Experience = require("../models/Experience");
 
-//CREATE Experience
 router.post("/",async (req, res) => {
   const newExperience = new Experience(req.body);
   try{
@@ -13,60 +12,23 @@ router.post("/",async (req, res) => {
   }
 });
 
-// UPDATE Experience
-router.put("/:title", async (req, res) => {
-  try{
-    const experience = await Experience.findById(req.params.title);
-    try{
-      const updatedExperience = await experience.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-      },
-      { new: true });
-      res.status(200).json(updatedExperience);
+router.get("/:id", async (req, res) => {
+  try {
+    const experience = await Experience.findById(req.params.id); 
+    if (!experience) {
+      return res.status(404).json({ message: "Experience not found" });
     }
-    catch(err){
-      res.status(500).json(err);
-    }
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
-});
-
-// Like an article
-router.post("/:_id/like", async (req, res) => {
-  try{
-    try{
-      const type = req.body.type;
-      const counter = type === 'like' ? 1:-1;
-      const updatedExperience = await Experience.updateOne({_id:req.params._id},{$inc:{likes_count: counter}},{new:true});
-      res.status(200).json(updatedExperience);
-    }
-    catch(err){
-      res.status(500).json(err);
-    }
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
-});
-
-// GET Article BY IDTITLE
-router.get("/:idTitle", async (req,res) => {
-  try{
-    const experience = await Experience.find({"idTitle": req.params.idTitle});
     res.status(200).json(experience);
-  }
-  catch(err){
-    res.status(500).json(err);
+  } catch (err) {
+    console.error("Error fetching experience:", err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-//GET ALL Articles
 router.get("/", async (req,res) => {
   try{
     const category = req.query.category;
-    const idTitle = req.query.idTitle;
+    const jobTitle = req.query.jobTitle;
     const limit = req.query.limit;
     let experiences;
 
@@ -75,8 +37,8 @@ router.get("/", async (req,res) => {
     if(category){
       query.category = req.query.category;
     }
-    if(idTitle){
-      query.idTitle = req.query.idTitle;
+    if(jobTitle){
+      query.jobTitle = req.query.jobTitle;
     }
 
     if(limit){

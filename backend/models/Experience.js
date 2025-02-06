@@ -2,52 +2,39 @@ const mongoose = require("mongoose");
 
 const ExperienceSchema = new mongoose.Schema(
   {
-    title: {
-      type:String,
-      required:true,
-      unique:true
-    },
-    idTitle: {
+    jobTitle: {
       type:String,
       required:true,
       unique:true
     },
     description: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    company: {
+      type:String,
+      required:true,
+      unique:true
+    },
+    location: {
       type: String
     },
-    content: {
+    employmentType: {
       type:String
     },
-    coverImage:{
+    startDate:{
       type:String
     },
-    imageCaption:{
+    endDate:{
       type:String
     },
-    imageAlt:{
-      type:String
+    isCurrent:{
+      type:Boolean,
+      default: false
     },
-    videoUrl:{
-      type:String
-    },
-    authors:{
-      type:Array
-    },
-    category:{
-      type:Array
-    },
-    buildDate:{
-      type:Date
-    },
-    // 1 - short, 2 - medium, 3 - detailed
-    durationType:{
-      type:Number
-    },
-    duration:{
-      type:Number
-    },
-    likes_count:{
-      type:Number
+    technologies:{
+      type: [String]
     }
   },
   { timestamps: true }
