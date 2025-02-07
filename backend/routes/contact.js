@@ -2,9 +2,7 @@ const router = require("express").Router();
 const ContactPage = require("../models/Contact");
 const nodemailer = require("nodemailer");
 
-//CREATE Blog
 router.post("/",async (req, res) => {
-    // const newBlogpage = new Blogpage(req.body);
     const { name, email, message, phone, countryCode, countryName } = req.body;
 
     if (!name || !email || !message || !phone || !countryCode || !countryName) {

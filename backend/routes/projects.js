@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Projectpage = require("../models/Project");
 
-//CREATE Projects
 router.post("/",async (req, res) => {
   const newProjectpage = new Projectpage(req.body);
   try{
@@ -13,45 +12,6 @@ router.post("/",async (req, res) => {
   }
 });
 
-// UPDATE Projects
-router.put("/:title", async (req, res) => {
-  try{
-    const projectpage = await Projectpage.findById(req.params.title);
-    try{
-      const updatedProjectpage = await projectpage.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-      },
-      { new: true });
-      res.status(200).json(updatedProjectpage);
-    }
-    catch(err){
-      res.status(500).json(err);
-    }
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
-});
-
-// Like a Project
-router.post("/:_id/like", async (req, res) => {
-  try{
-    try{
-      const type = req.body.type;
-      const counter = type === 'like' ? 1:-1;
-      const updatedProjectpage = await Projectpage.updateOne({_id:req.params._id},{$inc:{likes_count: counter}},{new:true});
-      res.status(200).json(updatedProjectpage);
-    }
-    catch(err){
-      res.status(500).json(err);
-    }
-  }
-  catch(err){
-    res.status(500).json(err);
-  }
-});
-
-// GET Project BY ID
 router.get("/:id", async (req, res) => {
   try {
     // Fetch project based on ObjectId
@@ -68,8 +28,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
-//GET ALL Projects
 router.get("/", async (req,res) => {
   try{
     const category = req.query.category;
