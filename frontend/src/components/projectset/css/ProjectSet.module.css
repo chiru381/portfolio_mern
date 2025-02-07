@@ -1,0 +1,53 @@
+.projectSetWrapper{
+    margin-top:18px;
+  }
+  
+  .projectSetTitle{
+      margin-bottom: 12px;
+  }
+  
+  .loadingSetCollection{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+    
+  .projectSetCollection{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 48px;
+    row-gap: 48px;
+    margin-bottom: 24px;
+  }
+  
+  /* iPad Devices */
+  @media only screen and (max-width: 1200px) {
+    .projectSetCollection{
+      column-gap:24px;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .projectSetCollection{
+      display: flex;
+      flex-direction: column;
+    }
+    .projectSetTitle{
+      margin-bottom: 4px;
+    }
+    .projectSetCollection{
+      row-gap: 24px;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 400px) {
+    .projectSetCollection{
+      row-gap: 12px;
+    }
+  
+  }

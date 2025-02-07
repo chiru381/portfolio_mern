@@ -1,0 +1,85 @@
+.projectSetItemWrapper{
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  flex-basis: 30%;
+  cursor: pointer;
+}
+  
+.image{
+  position: relative;
+  width:100%;
+  border-radius: 10px 10px 0 0;
+  z-index: 1;
+}
+
+.image img{
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  z-index: -1;
+}
+
+.content{
+  padding:8px 24px 16px 20px;
+}
+
+.title{
+  margin-bottom: 4px;
+}
+
+.date{
+  margin-bottom: 4px;
+}
+
+.category{
+  width:100%;
+  margin-bottom: 16px;
+}
+
+.description{
+  margin-bottom: 6px;
+}
+
+.projectSetItem {
+  display: flex;
+  flex-direction: column;
+}
+  
+@media only screen and (max-width: 900px) {
+  /* .description{
+    display: none;
+  } */
+  .category{
+    margin-bottom: 8px;
+  }
+  .projectSetItemWrapper{
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  /* Your responsive styles here */
+}
+
+@media (max-width: 800px) {
+  /* ... (styles for screens up to 800px wide) */
+}
+
+@media (max-width: 700px) {
+  /* ... (styles for screens up to 700px wide) */
+}
+
+@media (max-width: 500px) {
+  /* ... (styles for screens up to 500px wide) */
+}
+
+@media (max-width: 400px) {
+  /* ... (styles for screens up to 400px wide) */
+}
+
+@media (max-width: 300px) {
+  /* ... (styles for screens up to 300px wide) */
+}
