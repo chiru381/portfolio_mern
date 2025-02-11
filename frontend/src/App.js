@@ -6,7 +6,6 @@ import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 
 import classes from "./App.module.css";
-// import CookieOverlay from "./components/overlays/Cookies/CookieOverlay";
 import ProjectsPage from "./pages/projectspage/ProjectsPage";
 import CertificatesPage from "./pages/certificatespage/CertificatesPage";
 import SkillsPage from "./pages/skillspage/SkillsPage";
@@ -61,7 +60,6 @@ function App() {
           <Header />
           <AppContent />
           <Footer />
-          {/* <CookieOverlay /> */}
         </ThemeProvider>
       </VariantProvider>
     </div>

@@ -6,6 +6,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./ContactForm.css";
 import styled from "styled-components";
+import { ToastContainer, toast } from 'react-toastify';
 
 const StyledPhoneInput = styled(PhoneInput)`
   width: 100% !important;
@@ -25,6 +26,7 @@ const ContactForm = (props) => {
     countryCode: "",
     countryName: "",
   });
+  const success = () => toast("Thank you for reaching out! I will get back to you soon.");
   const [status, setStatus] = useState("");
   const _color =
     useTheme().theme.colorPalette.primary.appearance === "light"
@@ -56,7 +58,6 @@ const ContactForm = (props) => {
       );
       if (response.data.success) {
         setStatus("Message sent successfully!");
-        alert("Thank you for contacting me");
         setFormData({
           name: "",
           email: "",
@@ -157,7 +158,8 @@ const ContactForm = (props) => {
                 required
               ></textarea>
             </div>
-            <button type="submit">Submit</button>
+            <button onClick={success} type="submit">Submit</button>
+            <ToastContainer />
             {status && (
               <p className={status.includes("success") ? "" : "error"}>
                 {status}
