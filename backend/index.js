@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 const experienceRoute = require("./routes/experience");
 const projectRoute = require("./routes/projects");
@@ -13,6 +14,13 @@ dotenv.config({ path: './config/config.env' });
 
 const app = express();
 app.use(express.json());
+
+// Serve frontend build files
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+});
 
 const PORT = process.env.PORT || 8000;
 const DB = process.env.CLOUD_URI
