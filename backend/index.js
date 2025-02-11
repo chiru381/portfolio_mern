@@ -1,5 +1,4 @@
 const express = require("express");
-const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -10,16 +9,24 @@ const certificateRoute = require("./routes/certificates");
 const skillsRoute = require("./routes/skills");
 const educationRoute = require("./routes/education");
 const contactRoute = require("./routes/contact");
+dotenv.config({ path: './config/config.env' });
 
-dotenv.config();
+const app = express();
 app.use(express.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/portfolioooo',{
-    dbName: process.env.DB_NAME
-}).
-then(() => console.log('Database Connected')).catch(err => console.log(err));
+const PORT = process.env.PORT || 8000;
+const DB = process.env.CLOUD_URI
 
-app.use(cors());
+mongoose.connect(DB).
+then(() => console.log('Mongo DB - Connected Successfully')).catch(err => console.log(err));
+
+const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true, 
+    optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.use("/api/experience",experienceRoute);
 app.use("/api/projects",projectRoute);
@@ -28,6 +35,6 @@ app.use("/api/skills", skillsRoute);
 app.use("/api/education", educationRoute);  
 app.use("/api/contact", contactRoute);
 
-app.listen("5000",() => {
-    console.log("Backend is running.");
+app.listen(PORT,() => {
+    console.log(`Backend is running: ${PORT}`);
 });
