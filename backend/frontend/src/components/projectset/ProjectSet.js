@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Text, Link, Loader } from 'stelios';
 import { IconArrowRight } from '@tabler/icons-react';
 
 import classes from './css/ProjectSet.module.css';
 import ProjectSetItem from './ProjectSetItem.js';
-import getAxiosRequest from '../../util/getAxiosRequest';
 
 const ProjectList = ({ posts }) => {
   if (posts.length === 0) {
@@ -55,7 +55,7 @@ const ProjectSet = (props) => {
       }
       try {
         const [res] = await Promise.all([
-          getAxiosRequest("projects/?" + query),
+          axios.get("http://localhost:5000/api/projects/?" + query),
           new Promise(resolve => setTimeout(resolve, 300))
         ]);
         setPosts(res.data);

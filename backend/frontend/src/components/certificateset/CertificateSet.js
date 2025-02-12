@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Text, Link } from 'stelios';
 import { IconArrowRight } from '@tabler/icons-react';
@@ -6,7 +7,6 @@ import 'react-spinning-wheel/dist/style.css';
 
 import classes from './css/CertificateSet.module.css';
 import CertificateSetItem from './CertificateSetItem.js';
-import getAxiosRequest from '../../util/getAxiosRequest';
 import Loading from '../../components/Loading/Loading';
 
 const CertificateSet = (props) => {
@@ -26,11 +26,11 @@ const CertificateSet = (props) => {
           query = query + "limit=" + props.limit +"&";
         }
         if(query){
-          const res = await getAxiosRequest("certificates/?"+ query);
+          const res = await axios.get("http://localhost:5000/api/certificates/?"+ query);
           setCertificates(res.data);
         }
         else{
-          const res = await getAxiosRequest("certificates/");
+          const res = await axios.get("http://localhost:5000/api/certificates/")
           setCertificates(res.data);
         }
         setIsLoading(false);

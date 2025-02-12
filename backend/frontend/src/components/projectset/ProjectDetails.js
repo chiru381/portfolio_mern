@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Text, Loader, List, ListItem, Card, useTheme } from 'stelios';
 
-import getAxiosRequest from '../../util/getAxiosRequest';
 import classes from './css/ProjectDetails.module.css';
 
 const ProjectDetails = () => {
@@ -15,7 +15,7 @@ const ProjectDetails = () => {
     const fetchProject = async () => {
       setIsLoading(true);
       try {
-        const response = await getAxiosRequest(`projects/${id}`);
+        const response = await axios.get(`http://localhost:5000/api/projects/${id}`);
         setProject(response.data);
       } catch (error) {
         console.error("Error fetching project details:", error);

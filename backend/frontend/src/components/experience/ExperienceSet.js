@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Text, Link } from 'stelios';
 import { IconArrowRight } from '@tabler/icons-react';
@@ -6,7 +7,6 @@ import 'react-spinning-wheel/dist/style.css';
 
 import classes from './css/ExperienceSet.module.css';
 import ExperienceSetItem from './ExperienceSetItem';
-import getAxiosRequest from '../../util/getAxiosRequest';
 import Loading from '../Loading/Loading';
 
 const ExperienceSet = (props) => {
@@ -26,11 +26,11 @@ const ExperienceSet = (props) => {
               query = query + "limit=" + props.limit +"&";
             }
             if(query){
-              const res = await getAxiosRequest("experience/?"+ query);
+              const res = await axios.get("http://localhost:5000/api/experience/?"+ query);
               setExperience(res.data);
             }
             else{
-              const res = await getAxiosRequest("experience/");
+              const res = await axios.get("http://localhost:5000/api/experience/");
               setExperience(res.data);
             }
             setIsLoading(false);

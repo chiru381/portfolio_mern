@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link, Text } from 'stelios';
 import { IconArrowRight } from '@tabler/icons-react';
 
 import SkillSetItem from './SkillSetItem';
-import getAxiosRequest from '../../util/getAxiosRequest';
 import classes from './css/SkillSet.module.css'
 
 const SkillSet = (props) => {
@@ -23,11 +23,11 @@ const SkillSet = (props) => {
                     query = query + "limit=" + props.limit +"&";
                 }
                 if(query){
-                    const res = await getAxiosRequest("skills/?"+ query);
+                    const res = await axios.get("http://localhost:5000/api/skills/?"+ query);
                     setSkills(res.data);
                 }
                 else{
-                    const res = await getAxiosRequest("skills/?"+query);
+                    const res = await axios.get("http://localhost:5000/api/skills/?"+query);
                     setSkills(res.data);
                 }
             }
