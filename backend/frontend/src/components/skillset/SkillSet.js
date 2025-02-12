@@ -39,7 +39,8 @@ const SkillSet = (props) => {
         return () => { isMounted = false };
     },[props.category,props.limit,props.time,props.type]);
 
-    let currentPageData = skills.map((skill,index) => <SkillSetItem key={index} _id={skill._id} idTitle={skill.idTitle} rating={skill.imageCaption} name={skill.title} image={skill.coverImage} alt={skill.imageAlt}/>);
+    let currentPageData = Array.isArray(skills)
+    ? skills.map((skill,index) => <SkillSetItem key={index} _id={skill._id} idTitle={skill.idTitle} rating={skill.imageCaption} name={skill.title} image={skill.coverImage} alt={skill.imageAlt}/>) : [];
 
     if (skills.length === 0){
         currentPageData = <p>No Skills found</p>

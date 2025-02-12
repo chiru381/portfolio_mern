@@ -39,8 +39,25 @@ const CertificateSet = (props) => {
     fetchCertificate();
   }, [props.time, props.type, params.category, props.limit]);
   
-  let currentPageData = certificates.map((certificate,index) => <CertificateSetItem key={certificate._id} id={certificate._id} idTitle={certificate.idTitle} title={certificate.title} description={certificate.description} date={certificate.createdAt}
-    category={certificate.category} isDetailed = {certificate.isDetailed} coverImage={certificate.coverImage} imageAlt={certificate.imageAlt} duration={certificate.duration} difficultyType={certificate.difficultyType}/>);
+  let currentPageData = Array.isArray(certificates)
+  ? certificates.map((certificate, index) => (
+      <CertificateSetItem
+        key={certificate._id}
+        id={certificate._id}
+        idTitle={certificate.idTitle}
+        title={certificate.title}
+        description={certificate.description}
+        date={certificate.createdAt}
+        category={certificate.category}
+        isDetailed={certificate.isDetailed}
+        coverImage={certificate.coverImage}
+        imageAlt={certificate.imageAlt}
+        duration={certificate.duration}
+        difficultyType={certificate.difficultyType}
+      />
+    ))
+  : [];
+
 
   if(isLoading){
     return (<div>

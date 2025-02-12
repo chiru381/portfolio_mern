@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const CertificateSchema = new mongoose.Schema(
   {
@@ -44,4 +44,4 @@ const CertificateSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Certificate",CertificateSchema,"Certificates");
+export default mongoose.model("Certificate", CertificateSchema, "Certificates");

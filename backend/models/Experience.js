@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const ExperienceSchema = new mongoose.Schema(
   {
@@ -40,4 +40,4 @@ const ExperienceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Experience",ExperienceSchema,"Experience");
+export default mongoose.model("Experience",ExperienceSchema,"Experience");

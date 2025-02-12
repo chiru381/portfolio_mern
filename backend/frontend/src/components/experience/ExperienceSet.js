@@ -39,12 +39,13 @@ const ExperienceSet = (props) => {
         fetchExperience();
       }, [props.time, props.type, params.category, props.limit]);
       
-      let currentPageData = experience.map((experience,index) => 
+      let currentPageData = Array.isArray(experience)
+      ? experience.map((experience,index) => 
         <div key={experience._id}>
         <ExperienceSetItem key={experience._id} id={experience._id} jobTitle={experience.jobTitle} description={experience.description} company={experience.company} location={experience.location}
-        employmentType={experience.employmentType} startDate = {experience.startDate} endDate={experience.endDate} isCurrent={experience.isCurrent} technologies={experience.technologies} />
+        employmentType={experience.employmentType} startDate = {experience.startDate} endDate={experience.endDate} isCurrent={experience.isCurrent} technologies={experience.technologies} /> 
       </div>
-      );
+      ) : [];
     
       if(isLoading){
         return (<div>

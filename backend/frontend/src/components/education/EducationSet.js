@@ -39,7 +39,8 @@ const EducationSet = (props) => {
         fetchEducation();
       }, [props.time, props.type, params.category, props.limit]);
       
-      let currentPageData = education.map((education,index) => <EducationSetItem key={education._id} id={education._id} education={education.education} institute={education.institute} location={education.location} university={education.university} category={education.category} />);
+      let currentPageData = Array.isArray(education)
+      ? education.map((education,index) => <EducationSetItem key={education._id} id={education._id} education={education.education} institute={education.institute} location={education.location} university={education.university} category={education.category} />) : [];
     
       if(isLoading){
         return (<div>

@@ -14,7 +14,8 @@ const ProjectList = ({ posts }) => {
 
   return (
     <div className={classes.projectSetCollection}>
-      {posts.map((post, index) => (
+      { Array.isArray(posts)
+      ? posts.map((post, index) => (
         <ProjectSetItem
           key={index}
           id={post._id}
@@ -28,7 +29,8 @@ const ProjectList = ({ posts }) => {
           content={post.content}
           difficultyType={post.difficultyType}
         />
-      ))}
+      )) : []
+    }
     </div>
   );
 };

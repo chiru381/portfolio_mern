@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const Education = require("../models/Education");
+import express from "express";
+import Education from "../models/Education.js"
+
+const router = express.Router();
 
 router.post("/",async (req, res) => {
   const newEducation = new Education(req.body);
@@ -55,4 +57,4 @@ router.get("/", async (req,res) => {
   }
 });
 
-module.exports = router;
+export default router;

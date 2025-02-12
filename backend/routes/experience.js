@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const Experience = require("../models/Experience");
+import express from "express";
+import Experience from "../models/Experience.js"
+
+const router = express.Router();
 
 router.post("/",async (req, res) => {
   const newExperience = new Experience(req.body);
@@ -56,4 +58,4 @@ router.get("/", async (req,res) => {
 });
 
 
-module.exports = router;
+export default router;

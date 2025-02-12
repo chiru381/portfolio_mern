@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const Skill = require("../models/Skill");
+import express from "express";
+import Skill from "../models/Skill.js"
+
+const router = express.Router();
 
 router.post("/",async (req, res) => {
   const newSkill = new Skill(req.body);
@@ -37,4 +39,4 @@ router.get("/", async (req,res) => {
 });
 
 
-module.exports = router;
+export default router;

@@ -1,48 +1,52 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const path = require("path");
+import express from "express"
+import dotenv from "dotenv"
+import mongoose from "mongoose"
+import cors from "cors"
+import path from "path"
 
-const experienceRoute = require("./routes/experience");
-const projectRoute = require("./routes/projects");
-const certificateRoute = require("./routes/certificates");
-const skillsRoute = require("./routes/skills");
-const educationRoute = require("./routes/education");
-const contactRoute = require("./routes/contact");
+import experienceRoute from "./routes/experience.js"
+import projectRoute from "./routes/projects.js"
+import certificateRoute from "./routes/certificates.js"
+import skillsRoute from "./routes/skills.js"
+import educationRoute from "./routes/education.js"
+import contactRoute from "./routes/contact.js"
+import { fileURLToPath } from "url"
+
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
 app.use(express.json());
 
-// Serve frontend build files
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
+// Enable CORS
+app.use(cors());
 
+// Connect to MongoDB
 const PORT = process.env.PORT || 8000;
 const DB = process.env.CLOUD_URI
 
-mongoose.connect(DB).
-then(() => console.log('Mongo DB - Connected Successfully')).catch(err => console.log(err));
+mongoose.connect(DB)
+  .then(() => console.log('MongoDB - Connected Successfully'))
+  .catch(err => console.log(err));
 
-const corsOptions = {
-    origin: "http://localhost:3000",
-    credentials: true, 
-    optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-app.use("/api/experience",experienceRoute);
-app.use("/api/projects",projectRoute);
-app.use("/api/certificates",certificateRoute);
+// Define API routes
+app.use("/api/experience", experienceRoute);
+app.use("/api/projects", projectRoute);
+app.use("/api/certificates", certificateRoute);
 app.use("/api/skills", skillsRoute);
-app.use("/api/education", educationRoute);  
+app.use("/api/education", educationRoute);
 app.use("/api/contact", contactRoute);
 
-app.listen(PORT,() => {
-    console.log(`Backend is running: ${PORT}`);
+// Serve frontend build files
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+// Catch-all route (Move this BELOW the API routes)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Backend is running on port: ${PORT}`);
 });

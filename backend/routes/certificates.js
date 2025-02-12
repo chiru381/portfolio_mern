@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const Certificatepage = require("../models/Certificate");
+import express from "express";
+import Certificatepage from "../models/Certificate.js"
+
+const router = express.Router();
 
 router.post("/",async (req, res) => {
   const newCertificatepage = new Certificatepage(req.body);
@@ -43,4 +45,4 @@ router.get("/", async (req,res) => {
 });
 
 
-module.exports = router;
+export default router;
