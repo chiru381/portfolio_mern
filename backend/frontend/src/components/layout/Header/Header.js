@@ -17,13 +17,12 @@ import { IconCaretDown, IconSun, IconMoon, IconBrandGithub, IconMenu2, IconX } f
 import colorTokens from "../../../tokens/color/color-tokens.json";
 import Settings from "./Settings/Settings";
 
-const Header = (props) => {
+const Header = () => {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false); // Mobile menu toggle
   const [appearance, setAppearance] = useState(colorTokens.appearance);
   const colorPalette = useTheme().theme.colorPalette;
-  const _background =
-    colorPalette.primary.appearance === "dark" ? "#202124" : "white";
+  const _background = colorPalette.primary.appearance === "dark" ? "#202124" : "white";
   const categoryRef = useRef(null);
   
   const updateTheme = useUpdateTheme();
@@ -36,7 +35,7 @@ const Header = (props) => {
         "primary": colorPalette.primary.main,
         "black": colorTokens.accent.black
       }
-    })
+    });
     setAppearance((prev) => (prev === "light" ? "dark" : "light"));
   };
 
@@ -71,7 +70,6 @@ const Header = (props) => {
             tabIndex={0}
             $color={_color}
             style={{ color: _color }} 
-            color="primary"
             ref={categoryRef}
             onClick={() => setOpen(!open)}
           >
@@ -97,7 +95,7 @@ const Header = (props) => {
             </Menu>
           )}
         </HeaderItem>
-        <HeaderItem><Link style={{ color: _color }} onClick={() => window.open("https://drive.google.com/drive/u/1/my-drive")} to="/resume">Resume</Link></HeaderItem>
+        <HeaderItem><Link style={{ color: _color }} to="/resume">Resume</Link></HeaderItem>
       </NavLinks>
 
       {/* Icons Group */}
@@ -122,6 +120,13 @@ const Header = (props) => {
           <MobileNavItem><Link to="/skills">Skills</Link></MobileNavItem>
           <MobileNavItem><Link to="/experience">Experience</Link></MobileNavItem>
           <MobileNavItem><Link to="/education">Education</Link></MobileNavItem>
+          <MobileNavItem>
+            <IconGroupMobile>
+              <IconButton color="primary" icon={appearance === "light" ? <IconSun /> : <IconMoon />} onClick={_toggleTheme} />
+              <IconButton color="primary" icon={<IconBrandGithub />} onClick={() => window.open("https://github.com/chiru381/")} />
+              <Settings />
+            </IconGroupMobile>
+          </MobileNavItem>
         </MobileNav>
       )}
     </HeaderUI>
@@ -143,13 +148,15 @@ const IconGroup = styled(HeaderGroup)`
   }
 `;
 
+const IconGroupMobile = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
+
 const MobileMenuButton = styled.button`
   display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-right: 1rem;
-
   @media (max-width: 768px) {
     display: block;
   }
@@ -161,31 +168,25 @@ const MobileNav = styled.div`
   left: 0;
   width: 100%;
   background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  z-index: 10;
 `;
 
 const MobileNavItem = styled.div`
-  padding: 1rem;
   text-align: center;
-
-  &:hover {
-    background: #f0f0f0;
-  }
+  padding: 1rem;
 `;
-
-const CategoryLink = styled(Link)`
+const CategoryLink = styled.button`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
   gap: 0.25rem;
   cursor: pointer;
-
+  background: none;
+  border: none;
+  font: inherit;
+  color: ${(props) => props.$color};
+  
   &:hover {
     text-decoration: underline;
   }
