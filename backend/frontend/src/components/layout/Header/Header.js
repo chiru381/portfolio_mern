@@ -16,7 +16,6 @@ import { IconCaretDown, IconSun, IconMoon, IconBrandGithub, IconMenu2, IconX } f
 
 import colorTokens from "../../../tokens/color/color-tokens.json";
 import Settings from "./Settings/Settings";
-import resumePDF from "../../../assets/Chiranjeevi_Resume.pdf";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -96,15 +95,7 @@ const Header = () => {
             </Menu>
           )}
         </HeaderItem>
-        <HeaderItem>
-        <Link 
-          to="#" 
-          onClick={() => window.open(resumePDF, "_blank", "noopener,noreferrer")}
-          style={{ color: _color }}
-        >
-          Resume
-        </Link>
-      </HeaderItem>
+        <HeaderItem><Link style={{ color: _color }} to="/resume">Resume</Link></HeaderItem>
       </NavLinks>
 
       {/* Icons Group */}
@@ -123,15 +114,7 @@ const Header = () => {
       {menuOpen && (
         <MobileNav>
           <MobileNavItem><Link to="/">Home</Link></MobileNavItem>
-          <MobileNavItem>
-            <Link 
-            to="#" 
-            onClick={() => window.open(resumePDF, "_blank", "noopener,noreferrer")}
-            style={{ color: _color }}
-          >
-            Resume
-          </Link>
-          </MobileNavItem>
+          <MobileNavItem><Link to="/resume">Resume</Link></MobileNavItem>
           <MobileNavItem><Link to="/projects">Projects</Link></MobileNavItem>
           <MobileNavItem><Link to="/certificates">Certificates</Link></MobileNavItem>
           <MobileNavItem><Link to="/skills">Skills</Link></MobileNavItem>
