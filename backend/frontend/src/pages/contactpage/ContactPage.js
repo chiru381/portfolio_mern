@@ -7,12 +7,13 @@ import "react-phone-input-2/lib/style.css";
 import "./ContactForm.css";
 import styled from "styled-components";
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StyledPhoneInput = styled(PhoneInput)`
   width: 100% !important;
   .form-control {
     width: 100% !important;
-    height: 40px !important;  /* Match Name input field */
+    height: 40px !important;
     font-size: 16px;
   }
 `;
@@ -26,37 +27,39 @@ const ContactForm = (props) => {
     countryCode: "",
     countryName: "",
   });
-  const success = () => toast("Thank you for reaching out! I will get back to you soon.");
+
   const [status, setStatus] = useState("");
-  const _color =
-    useTheme().theme.colorPalette.primary.appearance === "light"
-      ? "black"
-      : "white";
+  const _color = useTheme().theme.colorPalette.primary.appearance === "light" ? "black" : "white";
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handlePhoneChange = (value, countryData) => {
     setFormData({
       ...formData,
-      phone: value, // Full phone number with country code
-      countryCode: countryData.dialCode, // Country code (e.g., "+1")
-      countryName: countryData.name, // Full country name (e.g., "United States")
+      phone: value,
+      countryCode: countryData.dialCode,
+      countryName: countryData.name,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if any field is empty
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      toast.error("Please fill all fields before submitting!");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "https://portfolio-8ir6.onrender.com/api/contact",
         formData
       );
       if (response.data.success) {
+        toast.success("Thank you for reaching out! I will get back to you soon.");
         setStatus("Message sent successfully!");
         setFormData({
           name: "",
@@ -67,12 +70,17 @@ const ContactForm = (props) => {
           countryName: "",
         });
       } else {
+        toast.error("Failed to send the message.");
         setStatus("Failed to send the message.");
       }
     } catch (error) {
+      toast.error("Error sending the message. Please try again later.");
       setStatus("Error sending the message. Please try again later.");
     }
   };
+
+  // Check if all fields are filled
+  const isFormValid = formData.name && formData.email && formData.phone && formData.message;
 
   return (
     <>
@@ -88,10 +96,7 @@ const ContactForm = (props) => {
           display: "flex",
         }}
       >
-        <Text size="large" color="primary">
-          {props.title}
-        </Text>{" "}
-        <IconArrowRight />
+        <Text size="large" color="primary">{props.title}</Text> <IconArrowRight />
       </Link>
       <Card
         animate="fade-in"
@@ -110,61 +115,34 @@ const ContactForm = (props) => {
         <div className="contact-form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>
-                <Text preciseColor={_color}>Name:</Text>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+              <label><Text preciseColor={_color}>Name:</Text></label>
+              <input type="text" name="name" value={formData.name} onChange={handleChange} required />
             </div>
             <div className="form-group">
-              <label>
-                <Text preciseColor={_color}>Email:</Text>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
+              <label><Text preciseColor={_color}>Email:</Text></label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
             </div>
             <div className="form-group">
-              <label>
-                <Text preciseColor={_color}>Phone Number:</Text>
-              </label>
+              <label><Text preciseColor={_color}>Phone Number:</Text></label>
               <StyledPhoneInput
-                country={"in"} // Default country
+                country={"in"}
                 value={formData.phone}
                 onChange={(value, country) => handlePhoneChange(value, country)}
-                inputProps={{
-                  name: "phone",
-                  required: true,
-                }}
+                inputProps={{ name: "phone", required: true }}
               />
             </div>
             <div className="form-group">
-              <label>
-                <Text preciseColor={_color}>Message:</Text>
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              ></textarea>
+              <label><Text preciseColor={_color}>Message:</Text></label>
+              <textarea name="message" value={formData.message} onChange={handleChange} required></textarea>
             </div>
-            <button onClick={success} type="submit">Submit</button>
-            <ToastContainer />
-            {status && (
-              <p className={status.includes("success") ? "" : "error"}>
-                {status}
-              </p>
+            
+            {/* Submit button only appears when all fields are filled */}
+            {isFormValid && (
+              <button type="submit">Submit</button>
             )}
+
+            <ToastContainer />
+            {status && <p className={status.includes("success") ? "" : "error"}>{status}</p>}
           </form>
         </div>
       </Card>
