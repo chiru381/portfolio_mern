@@ -26,11 +26,11 @@ const ExperienceSet = (props) => {
               query = query + "limit=" + props.limit +"&";
             }
             if(query){
-              const res = await axios.get("http://localhost:5000/api/experience/?"+ query);
+              const res = await axios.get("https://portfolio-8ir6.onrender.com/api/experience/?"+ query);
               setExperience(res.data);
             }
             else{
-              const res = await axios.get("http://localhost:5000/api/experience/");
+              const res = await axios.get("https://portfolio-8ir6.onrender.com/api/experience/");
               setExperience(res.data);
             }
             setIsLoading(false);

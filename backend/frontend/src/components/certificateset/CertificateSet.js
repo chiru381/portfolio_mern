@@ -26,11 +26,11 @@ const CertificateSet = (props) => {
           query = query + "limit=" + props.limit +"&";
         }
         if(query){
-          const res = await axios.get("http://localhost:5000/api/certificates/?"+ query);
+          const res = await axios.get("https://portfolio-8ir6.onrender.com/api/certificates/?"+ query);
           setCertificates(res.data);
         }
         else{
-          const res = await axios.get("http://localhost:5000/api/certificates/")
+          const res = await axios.get("https://portfolio-8ir6.onrender.com/api/certificates/")
           setCertificates(res.data);
         }
         setIsLoading(false);

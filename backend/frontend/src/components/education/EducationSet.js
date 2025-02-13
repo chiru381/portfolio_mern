@@ -26,11 +26,11 @@ const EducationSet = (props) => {
               query = query + "limit=" + props.limit +"&";
             }
             if(query){
-              const res = await axios.get("http://localhost:5000/api/education/?"+ query);
+              const res = await axios.get("https://portfolio-8ir6.onrender.com/api/education/?"+ query);
               setEducation(res.data);
             }
             else{
-              const res = await axios.get("http://localhost:5000/api/education/");
+              const res = await axios.get("https://portfolio-8ir6.onrender.com/api/education/");
               setEducation(res.data);
             }
             setIsLoading(false);

@@ -55,7 +55,7 @@ const ProjectSet = (props) => {
       }
       try {
         const [res] = await Promise.all([
-          axios.get("http://localhost:5000/api/projects/?" + query),
+          axios.get("https://portfolio-8ir6.onrender.com/api/projects/?" + query),
           new Promise(resolve => setTimeout(resolve, 300))
         ]);
         setPosts(res.data);

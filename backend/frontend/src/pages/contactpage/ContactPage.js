@@ -53,7 +53,7 @@ const ContactForm = (props) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/contact",
+        "https://portfolio-8ir6.onrender.com/api/contact",
         formData
       );
       if (response.data.success) {
