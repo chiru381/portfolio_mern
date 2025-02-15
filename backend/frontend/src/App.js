@@ -14,6 +14,7 @@ import VariantProvider from "./components/VariantProvider/VariantProvider";
 import ExperiencePage from "./pages/experiencepage/ExperiencePage";
 import EducationPage from "./pages/educationpage/EducationPage";
 import ProjectDetails from "./components/projectset/ProjectDetails";
+import ResumePage from "./pages/resumepage/ResumePage";
 
 const AppContent = () => {
   const theme = useTheme()?.theme;
@@ -41,6 +42,7 @@ const AppContent = () => {
         <Route path="/skills/" element={<SkillsPage />} />
         <Route path="/experience/" element={<ExperiencePage />} />
         <Route path="/education/" element={<EducationPage />} />
+        <Route path="/resume/" element={<ResumePage />} />
       </Routes>
     </div>
   );
