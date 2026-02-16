@@ -17,10 +17,10 @@ const Footer = () => {
                 {/* Contact Information */}
                 <div className={classes.contactInfo}>
                     <Text size="large" color="white" className={classes.contactItem}>
-                        <IconMail size={20} /> chiranjeevikosanam258@gmail.com
+                        <IconMail size={20} /> chirukosanam123@gmail.com
                     </Text>
                     <Text size="large" color="white" className={classes.contactItem}>
-                        <IconPhone size={20} /> +91 9205524258, +91 9010813851
+                        <IconPhone size={20} /> +91 9010813851
                     </Text>
                     <Text size="large" color="white" className={classes.contactItem}>
                         <IconMapPin size={20} /> Visakhapatnam, India
@@ -44,7 +44,7 @@ const Footer = () => {
                             <Link size="large" to="https://github.com/chiru381/" className={classes.socialIcon}>
                                 <IconBrandGithub />
                             </Link>
-                            <Link size="large" to="https://www.instagram.com/chiru.258" className={classes.socialIcon}>
+                            <Link size="large" to="https://www.instagram.com/chiru_9010" className={classes.socialIcon}>
                                 <IconBrandInstagram />
                             </Link>
                         </div>

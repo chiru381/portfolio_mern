@@ -7,7 +7,7 @@ const ResumeViewer = () => {
         <h2 style={{ textAlign: "center" }}>Resume Preview</h2>
         <iframe
           title="Resume Document"
-          src={`${process.env.PUBLIC_URL}/Chiranjeevi_3.8Y_Resume.pdf`}
+          src={`${process.env.PUBLIC_URL}/Chiranjeevi_4Y_Resume.pdf`}
           style={{
             width: "100%",
             height: "75vh", // Adjusts height based on screen size

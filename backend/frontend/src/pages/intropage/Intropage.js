@@ -56,7 +56,7 @@ const Intropage = () => {
                     <ListItem><Text preciseColor={_color} size="medium" style={{marginTop: "0.5rem"}}>Worked on Development, Testing, Debugging, Review and Execution of the project modules as well.</Text></ListItem>
                 </List>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "2rem", columnGap: "2rem", rowGap: "1rem", flexWrap: "wrap" }}>
-                <Button variant="neumorph" color="primary" onClick={() => window.open("https://drive.google.com/drive/u/1/my-drive")} style={{ backgroundColor: _primaryBgColor, color: _primaryColor , border:0 }}>View Resume</Button>
+                <Button variant="neumorph" color="primary" onClick={() => window.open("https://drive.google.com/drive/folders/1hoyru3t1bhnhCq115eWwH01TcsifVRiO")} style={{ backgroundColor: _primaryBgColor, color: _primaryColor , border:0 }}>View Resume</Button>
                 <Button variant="neumorph" color="primary" onClick={() => {window.open("https://www.linkedin.com/in/chiranjeevi-kosanam-454805169/")}}>LinkedIn Profile</Button>
             </div>
             </div>
